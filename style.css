@@ -208,7 +208,7 @@ body {
   visibility: hidden; /* Hide the hover text when the card is clicked */
 }
 
-.valentines-day-card.clicked .text:before {
+.valentines-day-card.clicked .text:after {
   content: "Don't eat too much chocolate you're sweet enough already";
   font-size: 25px;
 }
