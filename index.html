@@ -25,18 +25,19 @@
             opacity: 0;
             transition: opacity 2s ease-in-out;
             position: absolute;
-            transform: translate(-50%,-50%);
+            transform: translate(-50%, -50%);
             top: 50%;
             left: 50%;
             background-color: #1c1c27;
             padding: 50px;
             border-radius: 5px;
-            box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+            max-width: 80%; /* Adjusted container width for mobile */
         }
         label,
         input {
-            font-family: "DM Sans",sans-serif;
-            font-size: 18px;
+            font-family: "DM Sans", sans-serif;
+            font-size: 16px; /* Adjusted font size for mobile */
             letter-spacing: 0.5px;
             color: #e5e5e5;
         }
@@ -49,7 +50,7 @@
         }
         input {
             position: relative;
-            width: 379px;
+            width: 100%;
             padding: 10px 0;
             background-color: transparent;
             border: none;
@@ -61,7 +62,7 @@
             transition: opacity 2s ease-in-out;
         }
         .text {
-            font-size: 24px;
+            font-size: 18px; /* Adjusted font size for mobile */
             color: black; /* Set text color to black */
             position: absolute;
             left: 50%;
@@ -70,7 +71,8 @@
             z-index: 1;
         }
         .text h1,
-        .text h3 {
+        .text h3,
+        .text h4 {
             margin: 0;
         }
         .text1,
@@ -78,7 +80,8 @@
         .text5,
         .text6,
         .text7,
-        .text8 {
+        .text8,
+        .text10 {
             top: calc(50% - 30px);
         }
         .text2 {
@@ -122,7 +125,7 @@
         }
         .gif-container {
             position: absolute;
-            top: calc(50% - 100px); /* Adjusted position */
+            top: calc(50% - 120px); /* Adjusted position */
             left: 50%;
             transform: translateX(-50%);
             opacity: 0;
@@ -130,18 +133,18 @@
             animation-delay: 46s;
         }
         .gif-container img {
-            width: 200px;
+            width: 150px; /* Adjusted width for mobile */
         }
         .text10 {
             position: absolute;
-            top: calc(50% + 105px); /* Adjusted position */
+            top: calc(50% + 90px); /* Adjusted position */
             left: 50%;
             transform: translateX(-50%);
             opacity: 0;
             animation: fadeIn 2s forwards;
             animation-delay: 50s;
             color: white;
-            font-size: 24px;
+            font-size: 18px; /* Adjusted font size for mobile */
         }
         @keyframes typing {
             from {
@@ -241,7 +244,7 @@
 
         let i = 0;
         let placeholder = "";
-        const txt = "Happy Valentine's Day! Yieee! hehe bla bla.";
+        const txt = "Happy Valentine's Day! hehe.";
         const speed = 120;
 
         function type() {
