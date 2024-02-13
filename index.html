@@ -32,7 +32,6 @@
             font-size: 30px;
         }
 
-        .valentines-day-card:hover, /* Flip on hover */
         .valentines-day-card.clicked { /* Flip when clicked */
             transform: rotateY(180deg); /* Flip the card */
         }
@@ -86,8 +85,13 @@
             visibility: visible; /* Show the text when the card is clicked */
         }
 
-        .hover {
-            color: white;
+        @keyframes hideAnimation {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .valentines-day-card.clicked {
+            animation: hideAnimation 0.5s ease;
         }
     </style>
 </head>
