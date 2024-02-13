@@ -17,44 +17,52 @@
             background: linear-gradient(
                 135deg,
                 #ff5b84,
-                #eb3461
+                #ec6083
             );
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: "DM Sans", sans-serif;
         }
         .container {
             display: none;
             opacity: 0;
             transition: opacity 2s ease-in-out;
             position: absolute;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%,-50%);
             top: 50%;
             left: 50%;
             background-color: #1c1c27;
-            padding: 3vw;
+            padding: 50px;
             border-radius: 5px;
             box-shadow: 0 15px 25px rgba(0,0,0,0.15);
         }
         label,
         input {
-            font-size: 4vw;
-            letter-spacing: 0.2vw;
+            font-family: "DM Sans",sans-serif;
+            font-size: 18px;
+            letter-spacing: 0.5px;
             color: #e5e5e5;
         }
         label {
+            display: block;
+            position: relative;
+            color: #eb3461;
             font-weight: 500;
-            margin-bottom: 2vw;
+            margin-bottom: 10px;
         }
         input {
-            width: 60vw;
-            padding: 2vw 0;
-            border-bottom: 0.2vw solid #eb3461;
+            position: relative;
+            width: 379px;
+            padding: 10px 0;
+            background-color: transparent;
+            border: none;
+            border-bottom: 1.5px solid #eb3461;
+            outline: none;
+            color: #e5e5e5;
+            font-weight: 400;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
         }
         .text {
-            font-size: 5vw;
-            color: black;
+            font-size: 24px;
+            color: black; /* Set text color to black */
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
@@ -70,21 +78,20 @@
         .text5,
         .text6,
         .text7,
-        .text8,
-        .text10 {
-            top: calc(50% - 5vw);
+        .text8 {
+            top: calc(50% - 30px);
         }
         .text2 {
-            top: calc(50% + 5vw);
+            top: calc(50% + 30px);
         }
         .text3 {
-            top: calc(50% - 5vw);
+            top: calc(50% - 30px);
             display: flex;
             justify-content: center;
             align-items: center;
             opacity: 0;
             animation: fadeIn 2s forwards;
-            animation-delay: 8s;
+            animation-delay: 8s; /* Delay animation until after the first two messages have faded out */
         }
         .container.fadeIn {
             display: block;
@@ -99,23 +106,23 @@
         .typing-animation-container {
             opacity: 0;
             animation: fadeIn 2s forwards;
-            animation-delay: 13s;
+            animation-delay: 13s; /* Delay animation until after the third message has faded out */
         }
         .typing-animation {
             overflow: hidden;
             white-space: nowrap;
             animation: typing 2s steps(28, end);
-            animation-delay: 3s;
+            animation-delay: 3s; /* Delay typing animation until after container has faded in */
         }
         .badge {
             background-color: #3498db;
             color: white;
-            padding: 1vw 2vw;
-            border-radius: 0.5vw;
+            padding: 5px 10px;
+            border-radius: 5px;
         }
         .gif-container {
             position: absolute;
-            top: calc(50% - 10vh);
+            top: calc(50% - 100px); /* Adjusted position */
             left: 50%;
             transform: translateX(-50%);
             opacity: 0;
@@ -123,18 +130,18 @@
             animation-delay: 46s;
         }
         .gif-container img {
-            width: 15vw;
+            width: 200px;
         }
         .text10 {
             position: absolute;
-            top: calc(50% + 12vh);
+            top: calc(50% + 105px); /* Adjusted position */
             left: 50%;
             transform: translateX(-50%);
             opacity: 0;
             animation: fadeIn 2s forwards;
             animation-delay: 50s;
             color: white;
-            font-size: 3vw;
+            font-size: 24px;
         }
         @keyframes typing {
             from {
@@ -160,54 +167,11 @@
                 opacity: 0;
             }
         }
-
-        @media screen and (max-width: 414px) {
-            .text {
-                font-size: 6vw;
-            }
-            .text1,
-            .text4,
-            .text5,
-            .text6,
-            .text7,
-            .text8,
-            .text10 {
-                top: calc(50% - 6vw);
-            }
-            .text2 {
-                top: calc(50% + 6vw);
-            }
-            .text3 {
-                top: calc(50% - 6vw);
-            }
-            .container {
-                padding: 6vw;
-            }
-            label,
-            input {
-                font-size: 4vw;
-                letter-spacing: 0.2vw;
-            }
-            input {
-                width: 70vw;
-                padding: 3vw 0;
-            }
-            .gif-container {
-                top: calc(50% - 12vh);
-            }
-            .gif-container img {
-                width: 30vw;
-            }
-            .text10 {
-                top: calc(50% + 14vh);
-                font-size: 2.5vw;
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="text text1 fadeIn" id="text1"><h2>Hey Leila Antoinette.</h2></div>
-    <div class="text text2 fadeIn" id="text2" style="animation-delay: 2s;"><h5>I really like your name.</h5></div>
+    <div class="text text1 fadeIn" id="text1"><h3>Hey Leila Antoinette.</h3></div>
+    <div class="text text2 fadeIn" id="text2" style="animation-delay: 2s;"><h4>I really like your name.</h4></div>
     <div class="text text3" id="text3" style="animation-delay: 5s;"><h1>It's Valentine's Day!!! :)</h1></div>
 
     <div class="container" id="container">
@@ -215,10 +179,10 @@
         <input type="email" id="email-id" placeholder="">
     </div>
 
-    <div class="text text4" id="text4" style="animation-delay: 15s;"><h3>I was about to send that.</h3></div>
-    <div class="text text5" id="text5" style="animation-delay: 19s;"><h3>But then I stopped.</h3></div>
-    <div class="text text6" id="text6" style="animation-delay: 23s;"><h3>I realized, I wanted to do something <span class="badge">Special</span></h3></div>
-    <div class="text text7" id="text7" style="animation-delay: 29s;"><h3>Because you're special.</h3></div>
+    <div class="text text4" id="text4" style="animation-delay: 15s;"><h4>I was about to send that.</h4></div>
+    <div class="text text5" id="text5" style="animation-delay: 19s;"><h4>But then I stopped.</h4></div>
+    <div class="text text6" id="text6" style="animation-delay: 23s;"><h4>I realized, I wanted to do something <span class="badge">Special</span></h4></div>
+    <div class="text text7" id="text7" style="animation-delay: 29s;"><h4>Because you're special.</h4></div>
     <div class="text text8" id="text8" style="animation-delay: 35s;"><h1 class="zoomOut">SO</h1></div>
 
     <div class="gif-container">
@@ -277,7 +241,7 @@
 
         let i = 0;
         let placeholder = "";
-        const txt = "Happy Valentine's Day! Yieee! hehe bla bla bla";
+        const txt = "Happy Valentine's Day! Yieee! hehe bla bla.";
         const speed = 120;
 
         function type() {
