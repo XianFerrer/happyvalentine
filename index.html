@@ -1,125 +1,254 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Valentine</title>
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap">
     <style>
+        *,
+        *:before,
+        *:after {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
         body {
             height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #ff758f;
+            background: linear-gradient(
+                135deg,
+                #ff5b84,
+                #ec6083
+            );
         }
-
-        .valentines-day-card {
+        .container {
+            display: none;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            position: absolute;
+            transform: translate(-50%,-50%);
+            top: 50%;
+            left: 50%;
+            background-color: #1c1c27;
+            padding: 50px;
+            border-radius: 5px;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+        }
+        label,
+        input {
+            font-family: "DM Sans",sans-serif;
+            font-size: 18px;
+            letter-spacing: 0.5px;
+            color: #e5e5e5;
+        }
+        label {
+            display: block;
             position: relative;
-            width: 400px;
-            height: 300px;
-            background-color: #ff8fa3;
-            overflow: hidden;
-            border: 10px solid white;
-            border-radius: 10px;
-            box-shadow: 0 0 100px rgba(0, 0, 0, .4);
-            transition: transform 0.5s ease; /* Add transition for smooth flipping */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-family: 'Pacifico', cursive;
-            color: #800f2f;
-            font-size: 30px;
+            color: #eb3461;
+            font-weight: 500;
+            margin-bottom: 10px;
         }
-
-        .valentines-day-card.clicked { /* Flip when clicked */
-            transform: rotateY(180deg); /* Flip the card */
+        input {
+            position: relative;
+            width: 379px;
+            padding: 10px 0;
+            background-color: transparent;
+            border: none;
+            border-bottom: 1.5px solid #eb3461;
+            outline: none;
+            color: #e5e5e5;
+            font-weight: 400;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
         }
-
-        .valentines-day-card:before {
-            content: "";
-            position: absolute;
-            background-color: #ffb3c1;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            top: 140px;
-            left: -25px;
-            box-shadow: 60px 20px #ffb3c1, 130px 10px #ffb3c1, 190px 20px #ffb3c1, 260px -5px #ffb3c1, 340px 20px #ffb3c1;
-        }
-
-        .valentines-day-card:after {
-            content: "";
-            position: absolute;
-            background-color: #ffccd5;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            top: 160px;
-            left: -40px;
-            box-shadow: 50px 20px #ffccd5, 120px 40px #ffccd5, 200px 15px #ffccd5, 260px 30px #ffccd5, 330px 30px #ffccd5, 380px 10px #ffccd5;
-        }
-
-        .clouds {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background-color: #fff0f3;
-            z-index: 5;
-            top: 210px;
-            left: -20px;
-            box-shadow: 55px 30px #fff0f3, 125px 10px #fff0f3, 175px 20px #fff0f3, 250px 10px #fff0f3, 320px 5px #fff0f3, 380px 10px #fff0f3;
-        }
-
-        .hearts {
-            position: absolute;
-            z-index: 2;
-        }
-
         .text {
-            visibility: hidden;
+            font-size: 24px;
+            color: black; /* Set text color to black */
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            z-index: 1;
         }
-
-        .valentines-day-card.clicked .text {
-            visibility: visible; /* Show the text when the card is clicked */
+        .text h1,
+        .text h3 {
+            margin: 0;
         }
-
-        @keyframes hideAnimation {
-            0% { opacity: 1; }
-            100% { opacity: 0; }
+        .text1,
+        .text4,
+        .text5,
+        .text6,
+        .text7,
+        .text8 {
+            top: calc(50% - 30px);
         }
-
-        .valentines-day-card.clicked {
-            animation: hideAnimation 0.5s ease;
+        .text2 {
+            top: calc(50% + 30px);
+        }
+        .text3 {
+            top: calc(50% - 30px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            animation-delay: 8s; /* Delay animation until after the first two messages have faded out */
+        }
+        .container.fadeIn {
+            display: block;
+            opacity: 1;
+        }
+        .fadeIn {
+            animation: fadeIn 2s forwards;
+        }
+        .fadeOut {
+            animation: fadeOut 2s forwards;
+        }
+        .typing-animation-container {
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            animation-delay: 13s; /* Delay animation until after the third message has faded out */
+        }
+        .typing-animation {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 2s steps(28, end);
+            animation-delay: 3s; /* Delay typing animation until after container has faded in */
+        }
+        .badge {
+            background-color: #3498db;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .gif-container {
+            position: absolute;
+            top: calc(50% - 100px); /* Adjusted position */
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            animation-delay: 46s;
+        }
+        .gif-container img {
+            width: 200px;
+        }
+        .text10 {
+            position: absolute;
+            top: calc(50% + 105px); /* Adjusted position */
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            animation-delay: 50s;
+            color: white;
+            font-size: 24px;
+        }
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="happy-valentines">
-        <div class="valentines-day-card" id="valentines-card-1" onclick="toggleCard()">
-            <div class="clouds"></div>
-            <div class="hearts">
-                <!-- Hearts -->
-            </div>
-            <div class="text"><span>Happy Valentine's</span><br> Day!</div>
-        </div>
-        <div class="valentines-day-card" id="valentines-card-2">
-            <div class="clouds"></div>
-            <div class="hearts">
-                <!-- Hearts -->
-            </div>
-            <div class="text"><span>Don't eat too much chocolate you're sweet enough already</span></div>
-        </div>
+    <div class="text text1 fadeIn" id="text1"><h3>Hey Leila Antoinette.</h3></div>
+    <div class="text text2 fadeIn" id="text2" style="animation-delay: 2s;"><h4>I really like your name.</h4></div>
+    <div class="text text3" id="text3" style="animation-delay: 5s;"><h1>It's Valentine's Day!!! :)</h1></div>
+
+    <div class="container" id="container">
+        <label for="email-id">Message</label>
+        <input type="email" id="email-id" placeholder="">
     </div>
 
-    <script>
-        function toggleCard() {
-            const card1 = document.getElementById('valentines-card-1');
-            const card2 = document.getElementById('valentines-card-2');
+    <div class="text text4" id="text4" style="animation-delay: 15s;"><h4>I was about to send that.</h4></div>
+    <div class="text text5" id="text5" style="animation-delay: 19s;"><h4>But then I stopped.</h4></div>
+    <div class="text text6" id="text6" style="animation-delay: 23s;"><h4>I realized, I wanted to do something <span class="badge">Special</span></h4></div>
+    <div class="text text7" id="text7" style="animation-delay: 29s;"><h4>Because you're special.</h4></div>
+    <div class="text text8" id="text8" style="animation-delay: 35s;"><h1 class="zoomOut">SO</h1></div>
 
-            card1.classList.toggle('clicked');
-            card2.classList.toggle('clicked');
+    <div class="gif-container">
+        <img src="peach-goma.gif" alt="Happy Valentine's Day">
+    </div>
+
+    <div class="text text10" style="animation-delay: 47s;">Happy Valentine's Day :*</div>
+
+    <script>
+        setTimeout(function () {
+            var textElements = document.querySelectorAll('.text');
+            var container = document.getElementById('container');
+            var input = document.getElementById('email-id');
+
+            textElements.forEach(function (textElement) {
+                textElement.classList.remove('fadeIn');
+                textElement.classList.add('fadeOut');
+            });
+
+            setTimeout(function () {
+                container.classList.add('fadeIn');
+                input.style.opacity = "1";
+                type();
+            }, 7000);
+
+            setTimeout(function () {
+                var text3 = document.getElementById('text3');
+                text3.style.opacity = "1";
+                text3.classList.add('fadeIn');
+            }, 13000);
+
+            setTimeout(function () {
+                container.classList.add('fadeOut');
+            }, 14000);
+
+            setTimeout(function () {
+                var text4 = document.getElementById('text4');
+                var text5 = document.getElementById('text5');
+                var text6 = document.getElementById('text6');
+                var text7 = document.getElementById('text7');
+                var text8 = document.getElementById('text8');
+
+                text4.classList.add('fadeIn');
+                text5.classList.add('fadeIn');
+                text6.classList.add('fadeIn');
+                text7.classList.add('fadeIn');
+                text8.classList.add('fadeIn');
+            }, 23000);
+
+            setTimeout(function () {
+                var gifContainer = document.querySelector('.gif-container');
+                gifContainer.style.opacity = "1";
+            }, 46000);
+
+        }, 4000);
+
+        let i = 0;
+        let placeholder = "";
+        const txt = "Happy Valentine's Day! Yieee! hehe bla bla bla";
+        const speed = 120;
+
+        function type() {
+            placeholder += txt.charAt(i);
+            document.getElementById("email-id").setAttribute("placeholder", placeholder);
+            i++;
+            setTimeout(type, speed);
         }
     </script>
 </body>
